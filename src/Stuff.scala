@@ -1,8 +1,7 @@
 object Stuff {
 
   def charProduct(s: String) : Long = {
-    if (s.isEmpty) 0
-    else s.foldLeft(1L)((a, b) => a*b)
+    s.foldLeft(1L)((a, b) => a*b)
   }
 
   def signum (x: Int) = {if (x < 0) -1 else if (x > 0) 1 else 0}

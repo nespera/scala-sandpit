@@ -15,8 +15,8 @@ class StuffTest extends FunSuite {
     assert(signum(0) === 0)
   }
 
-  test("Empty string gives zero") {
-    assert(charProduct("") === 0)
+  test("Empty string gives one") {
+    assert(charProduct("") === 1)
   }
 
   test("A gives 65") {
