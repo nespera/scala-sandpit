@@ -15,4 +15,9 @@ object Stuff {
     else if (n%2 == 1) x * pow(x, n-1)
     else {val y: Float = pow(x, n / 2); y * y }
   }
+
+  def arrayOf(n: Int) = {
+    val r = new util.Random()
+    for (i <- 0 until n) yield r.nextInt(n)
+  }
 }

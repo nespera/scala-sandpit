@@ -55,4 +55,13 @@ class StuffTest extends FunSuite {
     assert(pow(4.0f, -2) === (1f/16))
   }
 
+  test("arrayOf has right size and number range") {
+    val size: Int = 10
+    val array = arrayOf(size)
+    assert(array.length === size)
+    for (i <- array) {
+      assert(i >=0 && i<size)
+    }
+  }
+
 }
