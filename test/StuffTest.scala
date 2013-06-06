@@ -31,4 +31,28 @@ class StuffTest extends FunSuite {
     assert(charProduct("Hello") === 9415087488L)
   }
 
+  test("Two to power one is two") {
+    assert(pow(2.0f, 1) === 2.0)
+  }
+
+  test("Something to power zero is one") {
+    assert(pow(234.56f, 0) === 1.0)
+  }
+
+  test("Something to power one is itself") {
+    assert(pow(8.2f, 1) === 8.2f)
+  }
+
+  test("Nine squared is 81") {
+    assert(pow(9.0f, 2) === 81f)
+  }
+
+  test("Two cubed is 8") {
+    assert(pow(2.0f, 3) === 8f)
+  }
+
+  test("4 to power -2 is 1/16") {
+    assert(pow(4.0f, -2) === (1f/16))
+  }
+
 }
