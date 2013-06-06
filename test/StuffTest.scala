@@ -64,4 +64,21 @@ class StuffTest extends FunSuite {
     }
   }
 
+  test("flip array swaps elements of size 2 array") {
+    assertFlip(Array(1, 2), Array(2, 1))
+  }
+
+  test("flip array ignores 3rd element") {
+    assertFlip(Array(1,2,3), Array(2,1,3))
+  }
+
+  test("flip array ignores empty array") {
+    assertFlip(Array(), Array())
+  }
+
+  def assertFlip(from: Array[Int], to: Array[Int]) {
+    val a = from
+    flipArray(a)
+    assert(a === to)
+  }
 }

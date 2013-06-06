@@ -20,4 +20,12 @@ object Stuff {
     val r = new util.Random()
     for (i <- 0 until n) yield r.nextInt(n)
   }
+
+  def flipArray(a: Array[Int]) {
+    for (i <-0 until ((a.length/2)*2, 2)) {
+      val temp = a(i)
+      a(i) = a(i+1)
+      a(i+1) = temp
+    }
+  }
 }
