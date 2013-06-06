@@ -1,3 +1,6 @@
+import scala.collection.immutable.IndexedSeq
+
+
 object Stuff {
 
   def charProduct(s: String) : Long = {
@@ -21,11 +24,12 @@ object Stuff {
     for (i <- 0 until n) yield r.nextInt(n)
   }
 
-  def flipArray(a: Array[Int]) {
-    for (i <-0 until ((a.length/2)*2, 2)) {
-      val temp = a(i)
-      a(i) = a(i+1)
-      a(i+1) = temp
-    }
+  def flipArray(a: Array[Int]) : Array[Int] = {
+    (for (i <- 0 until a.length) yield {
+      if (i % 2 == 0) {
+        if (i + 1 < a.length) a(i + 1) else a(i)
+      }
+      else a(i - 1)
+    }).toArray
   }
 }

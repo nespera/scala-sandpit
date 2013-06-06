@@ -77,8 +77,6 @@ class StuffTest extends FunSuite {
   }
 
   def assertFlip(from: Array[Int], to: Array[Int]) {
-    val a = from
-    flipArray(a)
-    assert(a === to)
+    assert(flipArray(from) === to)
   }
 }
