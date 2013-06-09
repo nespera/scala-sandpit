@@ -1,5 +1,3 @@
-import scala.collection.immutable.IndexedSeq
-
 
 object Stuff {
 
@@ -14,7 +12,7 @@ object Stuff {
 
   def pow(x: Float, n: Int) : Float = {
     if (n == 0) 1.0f
-    else if (n < 0) 1/(pow(x, -n))
+    else if (n < 0) 1/pow(x, -n)
     else if (n%2 == 1) x * pow(x, n-1)
     else {val y: Float = pow(x, n / 2); y * y }
   }
