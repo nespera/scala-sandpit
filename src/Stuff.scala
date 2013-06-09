@@ -30,4 +30,7 @@ object Stuff {
       else a(i - 1)
     }).toArray
   }
+
+  def posNeg(a: Array[Int]): Array[Int] = a.filter(_ > 0) ++ a.filter(_ <= 0)
+
 }

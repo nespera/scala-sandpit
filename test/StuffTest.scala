@@ -52,7 +52,7 @@ class StuffTest extends FunSuite {
   }
 
   test("4 to power -2 is 1/16") {
-    assert(pow(4.0f, -2) === (1f/16))
+    assert(pow(4.0f, -2) === 1f / 16)
   }
 
   test("arrayOf has right size and number range") {
@@ -75,6 +75,15 @@ class StuffTest extends FunSuite {
   test("flip array ignores empty array") {
     assertFlip(Array(), Array())
   }
+
+  test("posNeg ignores empty array") {
+    assert(Array() === Stuff.posNeg(Array()))
+  }
+
+  test("posNeg sticks positives first") {
+    assert(Array(1, 6, 103, -1, 0, -18, -3) === Stuff.posNeg(Array(-1, 0, 1, -18, 6, 103, -3)))
+  }
+
 
   def assertFlip(from: Array[Int], to: Array[Int]) {
     assert(flipArray(from) === to)
