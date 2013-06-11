@@ -2,7 +2,7 @@ class RomanNumeral(val arab: Int) {
   require(arab > 0)
 
   override def toString: String = {
-    RomanNumeral.stringify(arab)
+    RomanNumeral.replaceSpecialCases(RomanNumeral.basicString(arab))
   }
 }
 
@@ -13,10 +13,15 @@ object RomanNumeral {
     symbols.filter(symbol => i >= symbol._2).head
   }
 
-  private def stringify(i: Int): String = {
+  private def basicString(i: Int): String = {
     val (symbol, value) = nextSymbolFor(i)
-    symbol + (if (value > 0) stringify(i - value) else "")
-
+    symbol + (if (value > 0) basicString(i - value) else "")
   }
+
+  def replaceSpecialCases(romanString: String): String = {
+    romanString.replace("DCCCC", "CM").replace("CCCC", "CD").replace("LXXXX", "XC")
+               .replace("XXXX", "XL").replace("VIIII", "IX").replace("IIII", "IV")
+  }
+
   def apply(arab: Int) = new RomanNumeral(arab)
 }
