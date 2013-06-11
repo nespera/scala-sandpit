@@ -7,14 +7,15 @@ class RomanNumeral(val arab: Int) {
 }
 
 object RomanNumeral {
-  val symbols = List("M" -> 1000, "D" -> 500, "C" -> 100, "L" -> 50, "X" -> 10, "V" -> 5, "I" -> 1, "" -> 0)
+  val symbols = List("M" -> 1000, "D" -> 500, "C" -> 100, "L" -> 50, "X" -> 10, "V" -> 5, "I" -> 1)
+  val symbolsPlusZero = symbols :+ "" -> 0
 
   private def nextSymbolFor(i: Int): (String, Int) = {
-    symbols.filter(symbol => i >= symbol._2).head
+    symbolsPlusZero.filter(i >= _._2).head
   }
 
   private def stringify(i: Int): String = {
-    replaceSpecialCases(basicString(i))
+    contractSpecialCases(basicString(i))
   }
 
   private def basicString(i: Int): String = {
@@ -22,10 +23,28 @@ object RomanNumeral {
     symbol + (if (value > 0) basicString(i - value) else "")
   }
 
-  def replaceSpecialCases(romanString: String): String = {
+  //TODO refactor these two
+  def contractSpecialCases(romanString: String): String = {
     romanString.replace("DCCCC", "CM").replace("CCCC", "CD").replace("LXXXX", "XC")
                .replace("XXXX", "XL").replace("VIIII", "IX").replace("IIII", "IV")
   }
 
+  def expandSpecialCases(romanString: String): String = {
+    romanString.replace("CM", "DCCCC").replace("CD", "CCCC").replace("XC", "LXXXX")
+      .replace("XL", "XXXX").replace("IX", "VIIII").replace("IV", "IIII")
+  }
+
   def apply(arab: Int) = new RomanNumeral(arab)
+
+  def charToValue(c : Char): Int = {
+    val matched = symbols.filter(_._1.head == c)
+    if (matched.isEmpty) 0 else matched.head._2
+  }
+
+  def parseString(roman: String): Int = {
+    val basicString = expandSpecialCases(roman)
+    basicString.foldLeft(0)((s, c) => s + charToValue(c))
+  }
+
+  def apply(roman: String) = new RomanNumeral(parseString(roman))
 }

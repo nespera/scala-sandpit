@@ -6,6 +6,10 @@ class RomanNumeralTest extends FunSuite {
     assert(RomanNumeral(1).arab === 1)
   }
 
+  test("Can construct from String") {
+    assert(RomanNumeral("I").arab === 1)
+  }
+
   test("Must be positive") {
     intercept[IllegalArgumentException] {
       RomanNumeral(-1)
@@ -22,37 +26,40 @@ class RomanNumeralTest extends FunSuite {
   }
 
   test("One gives I") {
-    assertAsRoman(1, "I")
+    assertConversion(1, "I")
   }
 
   test("Two gives II") {
-    assertAsRoman(2, "II")
+    assertConversion(2, "II")
   }
 
   test("Five gives V") {
-    assertAsRoman(5, "V")
+    assertConversion(5, "V")
   }
 
   test("Six gives VI") {
-    assertAsRoman(6, "VI")
+    assertConversion(6, "VI")
   }
 
   test("Ten gives X") {
-    assertAsRoman(10, "X")
+    assertConversion(10, "X")
   }
 
   test("1650 gives MDCL") {
-    assertAsRoman(1650, "MDCL")
+    assertConversion(1650, "MDCL")
   }
 
   test("1999 gives MCMXCIX") {
-    assertAsRoman(1999, "MCMXCIX")
+    assertConversion(1999, "MCMXCIX")
   }
 
   test("444 gives CDXLIV") {
-    assertAsRoman(444, "CDXLIV")
+    assertConversion(444, "CDXLIV")
   }
 
-  def assertAsRoman(arab: Int, romanString: String) {assert(RomanNumeral(arab).toString === romanString)}
+  def assertConversion(arab: Int, romanString: String) {
+    assert(RomanNumeral(arab).toString === romanString)
+    assert(RomanNumeral(romanString).arab === arab)
+  }
 
 }
