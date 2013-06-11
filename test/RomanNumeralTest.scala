@@ -35,6 +35,10 @@ class RomanNumeralTest extends FunSuite {
     assertAsRoman(10, "X")
   }
 
+  test("1650 gives MDCL") {
+    assertAsRoman(1650, "MDCL")
+  }
+
   def assertAsRoman(arab: Int, romanString: String) {assert(RomanNumeral(arab).toString === romanString)}
 
 }
