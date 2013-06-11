@@ -57,6 +57,10 @@ class RomanNumeralTest extends FunSuite {
     assertConversion(444, "CDXLIV")
   }
 
+  //TODO test for non roman characters
+  //TODO test for out of order characters
+  //TODO test for over long sequences
+
   def assertConversion(arab: Int, romanString: String) {
     assert(RomanNumeral(arab).toString === romanString)
     assert(RomanNumeral(romanString).arab === arab)
