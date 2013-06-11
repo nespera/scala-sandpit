@@ -15,6 +15,12 @@ class RomanNumeralTest extends FunSuite {
     }
   }
 
+  test("Must be less than 5000") {
+    intercept[IllegalArgumentException] {
+      RomanNumeral(5000)
+    }
+  }
+
   test("One gives I") {
     assertAsRoman(1, "I")
   }
