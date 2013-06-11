@@ -3,7 +3,7 @@ import org.scalatest.FunSuite
 class RomanNumeralTest extends FunSuite {
 
   test("Can construct from Int") {
-    assert(RomanNumeral(1).toString === "I")
+    assert(RomanNumeral(1).arab === 1)
   }
 
   test("Must be positive") {
@@ -14,4 +14,6 @@ class RomanNumeralTest extends FunSuite {
       RomanNumeral(0)
     }
   }
+
+
 }
