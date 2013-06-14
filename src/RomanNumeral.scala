@@ -9,6 +9,7 @@ class RomanNumeral(val arab: Int) {
 object RomanNumeral {
   val symbols = List("M" -> 1000, "D" -> 500, "C" -> 100, "L" -> 50, "X" -> 10, "V" -> 5, "I" -> 1)
   val symbolsPlusZero = symbols :+ "" -> 0
+  val specialCases = List("DCCCC" -> "CM", "CCCC" -> "CD", "LXXXX" -> "XC", "XXXX" -> "XL", "VIIII" -> "IX", "IIII" -> "IV")
 
   private def nextSymbolFor(i: Int): (String, Int) = {
     symbolsPlusZero.filter(i >= _._2).head
@@ -23,15 +24,12 @@ object RomanNumeral {
     symbol + (if (value > 0) basicString(i - value) else "")
   }
 
-  //TODO refactor these two
   private def contractSpecialCases(romanString: String): String = {
-    romanString.replace("DCCCC", "CM").replace("CCCC", "CD").replace("LXXXX", "XC")
-               .replace("XXXX", "XL").replace("VIIII", "IX").replace("IIII", "IV")
+    specialCases.foldLeft(romanString)((s, special) => s.replace(special._1, special._2))
   }
 
   private def expandSpecialCases(romanString: String): String = {
-    romanString.replace("CM", "DCCCC").replace("CD", "CCCC").replace("XC", "LXXXX")
-      .replace("XL", "XXXX").replace("IX", "VIIII").replace("IV", "IIII")
+    specialCases.foldLeft(romanString)((s, special) => s.replace(special._2, special._1))
   }
 
   private def charToValue(c : Char): Int = {
