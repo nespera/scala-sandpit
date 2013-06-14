@@ -57,8 +57,18 @@ class RomanNumeralTest extends FunSuite {
     assertConversion(444, "CDXLIV")
   }
 
-  //TODO test for non roman characters
-  //TODO test for out of order characters
+  test("No illegal characters") {
+    intercept[IllegalArgumentException] {
+      RomanNumeral("MCMAIV")
+    }
+  }
+
+  test("Symbols must be in order") {
+    intercept[IllegalArgumentException] {
+      RomanNumeral("IM")
+    }
+  }
+
   //TODO test for over long sequences
 
   def assertConversion(arab: Int, romanString: String) {

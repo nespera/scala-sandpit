@@ -34,12 +34,18 @@ object RomanNumeral {
 
   private def charToValue(c : Char): Int = {
     val matched = symbols.filter(_._1.head == c)
-    if (matched.isEmpty) 0 else matched.head._2
+    require(!matched.isEmpty)
+    matched.head._2
   }
 
   private def parseString(roman: String): Int = {
     val basicString = expandSpecialCases(roman)
+    checkOrdering(basicString)
     basicString.foldLeft(0)((s, c) => s + charToValue(c))
+  }
+
+  def checkOrdering(basicString: String) {
+    basicString.foldRight(0)((c, s) => {val v = charToValue(c); require(s <= v); v})
   }
 
   def apply(arab: Int) = new RomanNumeral(arab)
