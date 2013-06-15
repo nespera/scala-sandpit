@@ -56,4 +56,12 @@ object RomanNumeral {
   def apply(arab: Int) = new RomanNumeral(arab)
 
   def apply(roman: String) = new RomanNumeral(parseString(roman))
+
+  def unapply(roman: String) = {
+    try {
+      Some(parseString(roman))
+    } catch {
+      case _ : IllegalArgumentException => None
+    }
+  }
 }

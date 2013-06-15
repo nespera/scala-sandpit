@@ -75,7 +75,17 @@ class RomanNumeralTest extends FunSuite {
     }
   }
 
-  //TODO test for over long sequences
+  test("Can extract a value from String") {
+    val RomanNumeral(a: Int) = "MMCIV"
+    assert(a === 2104)
+  }
+
+  test("Doesn't match nonsense strings") {
+    intercept[scala.MatchError] {
+      val RomanNumeral(a: Int) = "NOTROMAN"
+      assert(a === a + 1) //Stop it complaining about unused val
+    }
+  }
 
   def assertConversion(arab: Int, romanString: String) {
     assert(RomanNumeral(arab).toString === romanString)
