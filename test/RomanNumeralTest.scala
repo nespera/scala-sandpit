@@ -69,6 +69,12 @@ class RomanNumeralTest extends FunSuite {
     }
   }
 
+  test("Sequences must not be overlong") {
+    intercept[IllegalArgumentException] {
+      RomanNumeral("MMIIIII")
+    }
+  }
+
   //TODO test for over long sequences
 
   def assertConversion(arab: Int, romanString: String) {

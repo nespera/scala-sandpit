@@ -41,7 +41,12 @@ object RomanNumeral {
   private def parseString(roman: String): Int = {
     val basicString = expandSpecialCases(roman)
     checkOrdering(basicString)
+    checkForLongSequences(basicString)
     basicString.foldLeft(0)((s, c) => s + charToValue(c))
+  }
+
+  def checkForLongSequences(basicString: String) {
+    for (symbol <- symbols) require(basicString.count(symbol._1.head == _) < 5)
   }
 
   def checkOrdering(basicString: String) {
