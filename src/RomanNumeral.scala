@@ -1,5 +1,5 @@
 class RomanNumeral(val arab: Int) {
-  require(arab > 0 && arab < 5000)
+  require(arab > 0 && arab < 5000, "Value must be in range 1-4999")
 
   override def toString: String = {
     RomanNumeral.stringify(arab)
@@ -34,7 +34,7 @@ object RomanNumeral {
 
   private def charToValue(c : Char): Int = {
     val matched = symbols.filter(_._1.head == c)
-    require(!matched.isEmpty)
+    require(!matched.isEmpty, "Unexpected Symbol '" + c + "'")
     matched.head._2
   }
 
@@ -45,12 +45,12 @@ object RomanNumeral {
     basicString.foldLeft(0)((s, c) => s + charToValue(c))
   }
 
-  def checkForLongSequences(basicString: String) {
-    for (symbol <- symbols) require(basicString.count(symbol._1.head == _) < 5)
+  private def checkForLongSequences(basicString: String) {
+    for (symbol <- symbols) require(basicString.count(symbol._1.head == _) < 5, "Overlong Symbol Sequence")
   }
 
-  def checkOrdering(basicString: String) {
-    basicString.foldRight(0)((c, s) => {val v = charToValue(c); require(s <= v); v})
+  private def checkOrdering(basicString: String) {
+    basicString.foldRight(0)((c, s) => {val v = charToValue(c); require(s <= v, "Symbol Out Of Order"); v})
   }
 
   def apply(arab: Int) = new RomanNumeral(arab)
