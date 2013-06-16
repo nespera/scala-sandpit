@@ -4,6 +4,10 @@ class RomanNumeral(val arab: Int) {
   override def toString: String = {
     RomanNumeral.stringify(arab)
   }
+
+  def +(that: RomanNumeral): RomanNumeral = {
+    RomanNumeral(arab + that.arab)
+  }
 }
 
 object RomanNumeral {

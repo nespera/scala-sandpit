@@ -87,6 +87,11 @@ class RomanNumeralTest extends FunSuite {
     }
   }
 
+  test("Can add them together") {
+    val sum: RomanNumeral = RomanNumeral("MMIX") + RomanNumeral("D")
+    assert(sum.arab === 2509)
+  }
+
   def assertConversion(arab: Int, romanString: String) {
     assert(RomanNumeral(arab).toString === romanString)
     assert(RomanNumeral(romanString).arab === arab)
