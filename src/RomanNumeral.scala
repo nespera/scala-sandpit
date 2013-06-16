@@ -8,6 +8,10 @@ class RomanNumeral(val arab: Int) {
   def +(that: RomanNumeral): RomanNumeral = {
     RomanNumeral(arab + that.arab)
   }
+
+  def -(that: RomanNumeral): RomanNumeral = {
+    RomanNumeral(arab - that.arab)
+  }
 }
 
 object RomanNumeral {
@@ -68,4 +72,9 @@ object RomanNumeral {
       case _ : IllegalArgumentException => None
     }
   }
+}
+
+object RomanImplicits {
+  implicit def romanToInt(roman: RomanNumeral) = {roman.arab}
+  implicit def intToRoman(a: Int) = {RomanNumeral(a)}
 }

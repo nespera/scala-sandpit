@@ -1,4 +1,5 @@
 import org.scalatest.FunSuite
+import RomanImplicits._
 
 class RomanNumeralTest extends FunSuite {
 
@@ -90,6 +91,21 @@ class RomanNumeralTest extends FunSuite {
   test("Can add them together") {
     val sum: RomanNumeral = RomanNumeral("MMIX") + RomanNumeral("D")
     assert(sum.arab === 2509)
+  }
+
+  test("Can subtract them") {
+    val sub: RomanNumeral = RomanNumeral("M") - RomanNumeral("I")
+    assert(sub.arab === 999)
+  }
+
+  test("Can convert to an int") {
+    val sum: Int = 7 + RomanNumeral("III")
+    assert(sum === 10)
+  }
+
+  test("Can convert from an int") {
+    val sum: RomanNumeral = RomanNumeral("III") + 9
+    assert(sum.toString === "XII")
   }
 
   def assertConversion(arab: Int, romanString: String) {
