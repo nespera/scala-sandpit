@@ -1,4 +1,5 @@
-module/
-.idea/
-out/
-lib/
+/module/
+/.idea/
+/out/
+/lib/
+target/
