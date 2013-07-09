@@ -54,7 +54,7 @@ object RomanNumeral {
   }
 
   private def checkForLongSequences(basicString: String) {
-    for (symbol <- symbols) require(basicString.count(symbol._1.head == _) < 5, "Overlong Symbol Sequence")
+    for (symbol <- symbols) require(basicString.count(symbol._1.head ==) < 5, "Overlong Symbol Sequence")
   }
 
   private def checkOrdering(basicString: String) {
