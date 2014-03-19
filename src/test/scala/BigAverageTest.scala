@@ -8,7 +8,7 @@ class BigAverageTest extends FunSuite {
   }
 
   test("small array test") {
-    assert(average(Array(1,2,1,2,1,2,1,2,1,2)) === 1.5)
+    assert(average((for(i <- 1 to ACTORS) yield (i%2)+1).toArray) === 1.5)
   }
 
   test("random array") {
